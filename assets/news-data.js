@@ -1,10 +1,10 @@
 /* 由 GitHub Actions 每日凌晨生成，请勿手工编辑。*/
 window.MORNINGCODE_NEWS_SCHEDULED = {
   "date": "2026-11-12",
-  "generatedAt": "2026-11-12T17:33:41+08:00",
+  "generatedAt": "2026-11-12T17:50:01+08:00",
   "generator": "GitHub Actions · daily-news.yml",
   "edition": "DAILY · 2026-11-12",
-  "updatedAt": "2026-11-12T17:33:41+08:00",
+  "updatedAt": "2026-11-12T17:50:01+08:00",
   "headline": "今日焦点 · 智能体：Meta 推出轻量级 AI 模型 Muse Ember",
   "editorial": "本期由每日凌晨定时任务从 AI 资讯 / IT之家 / 60秒读懂世界 / 量子位 / InfoQ 自动聚合，按与 C 语言学习者的相关度筛出 10 条，其中「智能体」4 条。智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。",
   "sourceLine": "本期来源：AI 资讯 / IT之家 / 60秒读懂世界 / 量子位 / InfoQ。由 GitHub Actions 每日 00:30（北京时间）自动生成，仅聚合公开信息，观点为站内编辑分析，版权归原作者所有。",
