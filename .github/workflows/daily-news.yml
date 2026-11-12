@@ -50,7 +50,8 @@ jobs:
 
       - name: 抓取并生成今日简报
         env:
-          FORCE_NEWS: ${{ github.event_name == 'workflow_dispatch' && inputs.force == 'true' && '1' || '0' }}
+          # 改了生成脚本/工作流时，用新逻辑重新生成一次；手动运行时可选强制
+          FORCE_NEWS: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.force == 'true')) && '1' || '0' }}
         run: node scripts/generate-news.mjs
 
       - name: 提交当日数据
