@@ -11769,6 +11769,7 @@ window.MORNINGCODE_NEWS = {
   const SCHEDULED_NEWS_REPO = "green-Or-ange/morningcode-news";
   const SCHEDULED_NEWS_FILE = "assets/news-data.json";
   const SCHEDULED_NEWS_SCRIPT = "assets/news-data.js";
+  const SCHEDULED_DAILY_DIR = "assets/daily";
   const SCHEDULED_NEWS_CDNS = [
     "https://fastly.jsdelivr.net/gh",
     "https://gcore.jsdelivr.net/gh",
@@ -12126,12 +12127,22 @@ window.MORNINGCODE_NEWS = {
   }
 
   function scheduledNewsUrls() {
-    const bucket = scheduledStamp().bucket;
-    const urls = [`/${SCHEDULED_NEWS_FILE}?v=${bucket}`];
+    const stamp = scheduledStamp();
+    const datedJson = `${SCHEDULED_DAILY_DIR}/news-${stamp.date}.json`;
+    const urls = [
+      `/${datedJson}`,
+      `/${SCHEDULED_NEWS_FILE}?v=${stamp.bucket}`
+    ];
+    // 带日期的文件每天都是新 URL，天然绕开 CDN 的 12 小时分支缓存
     SCHEDULED_NEWS_CDNS.forEach((cdn) => {
-      urls.push(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${SCHEDULED_NEWS_FILE}?v=${bucket}`);
+      urls.push(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${datedJson}`);
     });
-    urls.push(`https://raw.githubusercontent.com/${SCHEDULED_NEWS_REPO}/main/${SCHEDULED_NEWS_FILE}?v=${bucket}`);
+    SCHEDULED_NEWS_CDNS.forEach((cdn) => {
+      urls.push(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${SCHEDULED_NEWS_FILE}?v=${stamp.bucket}`);
+    });
+    // GitHub API 缓存只有 60 秒，且允许跨域
+    urls.push(`https://api.github.com/repos/${SCHEDULED_NEWS_REPO}/contents/${datedJson}?ref=main&v=${stamp.bucket}`);
+    urls.push(`https://raw.githubusercontent.com/${SCHEDULED_NEWS_REPO}/main/${datedJson}`);
     return urls;
   }
 
@@ -12139,7 +12150,11 @@ window.MORNINGCODE_NEWS = {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 6000);
     try {
-      const response = await fetch(url, { signal: controller.signal, cache: "no-store" });
+      const options = { signal: controller.signal, cache: "no-store" };
+      if (url.indexOf("https://api.github.com/") === 0) {
+        options.headers = { Accept: "application/vnd.github.raw+json" };
+      }
+      const response = await fetch(url, options);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } finally {
@@ -12179,10 +12194,16 @@ window.MORNINGCODE_NEWS = {
         if (validScheduledPayload(payload)) return payload;
       } catch (error) { /* 该通道不可用，换下一个 */ }
     }
-    const bucket = scheduledStamp().bucket;
+    const stamp = scheduledStamp();
+    const datedJs = `${SCHEDULED_DAILY_DIR}/news-${stamp.date}.js`;
     for (const cdn of SCHEDULED_NEWS_CDNS) {
       try {
-        return await loadScheduledScript(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${SCHEDULED_NEWS_SCRIPT}?v=${bucket}`);
+        return await loadScheduledScript(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${datedJs}`);
+      } catch (error) { /* 继续尝试下一个 CDN */ }
+    }
+    for (const cdn of SCHEDULED_NEWS_CDNS) {
+      try {
+        return await loadScheduledScript(`${cdn}/${SCHEDULED_NEWS_REPO}@main/${SCHEDULED_NEWS_SCRIPT}?v=${stamp.bucket}`);
       } catch (error) { /* 继续尝试下一个 CDN */ }
     }
     return null;

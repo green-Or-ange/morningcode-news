@@ -9,14 +9,16 @@
    强制重新生成： FORCE_NEWS=1 node scripts/generate-news.mjs
    ========================================================= */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = join(ROOT, "assets");
+const DAILY_DIR = join(OUT_DIR, "daily");
 const JSON_OUT = join(OUT_DIR, "news-data.json");
 const JS_OUT = join(OUT_DIR, "news-data.js");
+const KEEP_DAYS = 14;
 
 const MAX_ITEMS = 10;
 const MIN_ITEMS = 6;
@@ -239,7 +241,8 @@ async function main() {
   if (process.env.FORCE_NEWS !== "1") {
     try {
       const previous = JSON.parse(await readFile(JSON_OUT, "utf8"));
-      if (previous.date === today) {
+      const dated = await readFile(join(DAILY_DIR, `news-${today}.json`), "utf8");
+      if (previous.date === today && JSON.parse(dated).date === today) {
         console.log(`今日（${today}）简报已生成，跳过。需要重跑请设置 FORCE_NEWS=1。`);
         return;
       }
@@ -332,18 +335,27 @@ async function main() {
     items
   };
 
-  await mkdir(OUT_DIR, { recursive: true });
-  await writeFile(JSON_OUT, JSON.stringify(payload, null, 2) + "\n", "utf8");
-  await writeFile(
-    JS_OUT,
-    `/* 由 GitHub Actions 每日凌晨生成，请勿手工编辑。*/\n` +
-    `window.MORNINGCODE_NEWS_SCHEDULED = ${JSON.stringify(payload, null, 2)};\n`,
-    "utf8"
-  );
+  const jsonText = JSON.stringify(payload, null, 2) + "\n";
+  const jsText = "/* 由 GitHub Actions 每日凌晨生成，请勿手工编辑。*/\n" +
+    `window.MORNINGCODE_NEWS_SCHEDULED = ${JSON.stringify(payload, null, 2)};\n`;
+
+  await mkdir(DAILY_DIR, { recursive: true });
+  await writeFile(JSON_OUT, jsonText, "utf8");
+  await writeFile(JS_OUT, jsText, "utf8");
+  // 每天一个独立 URL：CDN 对新路径必然回源，不会被 12 小时分支缓存拖住
+  await writeFile(join(DAILY_DIR, `news-${today}.json`), jsonText, "utf8");
+  await writeFile(join(DAILY_DIR, `news-${today}.js`), jsText, "utf8");
+
+  // 只保留最近 KEEP_DAYS 天，避免仓库无限膨胀
+  const cutoff = dayNumber(today) - KEEP_DAYS;
+  for (const name of await readdir(DAILY_DIR)) {
+    const match = name.match(/^news-(\d{4}-\d{2}-\d{2})\.(json|js)$/);
+    if (match && dayNumber(match[1]) < cutoff) await unlink(join(DAILY_DIR, name));
+  }
 
   console.log(`\n已生成 ${items.length} 条（${Object.keys(counts).map((k) => `${CATEGORY_LABEL[k]} ${counts[k]}`).join(" / ")}）`);
   items.forEach((item, index) => console.log(`  ${String(index + 1).padStart(2, "0")}. [${CATEGORY_LABEL[item.category]}] ${item.title}`));
-  console.log(`\n输出：${JSON_OUT}\n      ${JS_OUT}`);
+  console.log(`\n输出：${JSON_OUT}\n      ${JS_OUT}\n      assets/daily/news-${today}.json / .js`);
 }
 
 main().catch((error) => {

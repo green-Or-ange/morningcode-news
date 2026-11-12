@@ -57,10 +57,10 @@ jobs:
         run: |
           git config user.name "morningcode-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- assets/news-data.json assets/news-data.js; then
+          if git diff --quiet -- assets; then
             echo "数据与上一版相同，跳过提交。"
           else
-            git add assets/news-data.json assets/news-data.js
+            git add -A assets
             git commit -m "chore(news): 每日简报 $(date -u -d '+8 hours' +%F)"
             git push
           fi
