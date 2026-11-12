@@ -1,11 +1,11 @@
 /* 由 GitHub Actions 每日凌晨生成，请勿手工编辑。*/
 window.MORNINGCODE_NEWS_SCHEDULED = {
-  "date": "2026-11-12",
-  "generatedAt": "2026-11-12T17:50:01+08:00",
+  "date": "2026-11-13",
+  "generatedAt": "2026-11-13T01:21:14+08:00",
   "generator": "GitHub Actions · daily-news.yml",
-  "edition": "DAILY · 2026-11-12",
-  "updatedAt": "2026-11-12T17:50:01+08:00",
-  "headline": "今日焦点 · 智能体：Meta 推出轻量级 AI 模型 Muse Ember",
+  "edition": "DAILY · 2026-11-13",
+  "updatedAt": "2026-11-13T01:21:14+08:00",
+  "headline": "今日焦点 · 智能体：阿里推出全新一代大模型Qwen4-Max 预览版",
   "editorial": "本期由每日凌晨定时任务从 AI 资讯 / IT之家 / 60秒读懂世界 / 量子位 / InfoQ 自动聚合，按与 C 语言学习者的相关度筛出 10 条，其中「智能体」4 条。智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。",
   "sourceLine": "本期来源：AI 资讯 / IT之家 / 60秒读懂世界 / 量子位 / InfoQ。由 GitHub Actions 每日 00:30（北京时间）自动生成，仅聚合公开信息，观点为站内编辑分析，版权归原作者所有。",
   "sources": [
@@ -16,69 +16,82 @@ window.MORNINGCODE_NEWS_SCHEDULED = {
     "InfoQ"
   ],
   "defaultOrder": [
-    "d-20261111-gfmjix",
-    "d-20261111-7rz2gp",
-    "d-20261111-ndtasj",
-    "d-20261111-lfa4b6",
+    "d-20261112-igjl7r",
+    "d-20261112-7mcxvk",
+    "d-20261112-n7mxhh",
+    "d-20261112-557a9q",
+    "d-20261112-x0mq62",
     "d-20261112-s9dt1w",
+    "d-20261111-rxkfj9",
     "d-20261111-gk6zpg",
     "d-20261111-m7dp53",
-    "d-20261112-7b9shb",
-    "d-20261112-bmx701",
-    "d-20261112-9si788"
+    "d-20261112-jmxgcz"
   ],
   "items": [
     {
-      "id": "d-20261111-gfmjix",
-      "date": "2026-11-11",
+      "id": "d-20261112-igjl7r",
+      "date": "2026-11-12",
       "time": "08:00",
       "category": "agent",
-      "source": "智东西",
-      "readTime": 4,
-      "title": "Meta 推出轻量级 AI 模型 Muse Ember",
-      "summary": "推出迄今最小模型，主打复杂推理与智能体任务，支持100万Token上下文及原生多模态。Muse Ember单项任务成本仅约0.14美元，约为的三分之一，多项Agent评测成绩反超后者，但真实工程编码仍有差距。",
+      "source": "千问AI平台",
+      "readTime": 5,
+      "title": "阿里推出全新一代大模型Qwen4-Max 预览版",
+      "summary": "阿里全新一代大模型正式推出，首发上线千问AI平台Token Plan。Qwen4-Max 预览版在世界知识、感知能力以及编程和Agentic等关键能力上全面升级，可更好完成复杂编程、专业办公、前端设计和专业软件操作等任务。内测成果显示，Qwen4-Max 预览版在3D建模、网页设计、人机交互等方面表…",
       "why": "智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。 留意它真正解决的是哪一类任务，而不是榜单上的数字。",
       "forYou": "让 AI 生成一段 C 代码，你负责逐行检查边界条件、内存释放和返回值。会 review，比会调用更难，也更值钱。",
-      "url": "https://mp.weixin.qq.com/s/44vxpEPwrlo9Y3egWqsc4Q"
+      "url": "https://mp.weixin.qq.com/s/GnKYDoQgi5PW-rxVeri9_Q?scene=1"
     },
     {
-      "id": "d-20261111-7rz2gp",
-      "date": "2026-11-11",
+      "id": "d-20261112-7mcxvk",
+      "date": "2026-11-12",
       "time": "08:00",
+      "category": "agent",
+      "source": "IT之家",
+      "readTime": 5,
+      "title": "全球最大 AI 聚合平台 OpenRouter 正式并入 Stripe",
+      "summary": "支付巨头Stripe宣布完成收购全球最大AI模型API聚合平台，交易金额约为75至80亿美元。OpenRouter成立于2023年，由OpenSea联合创始人Alex Atallah创立，通过统一API接入超80家供应商的400多款模型，服务超1000万开发者。双方计划探索新商业模式，优化词元路由与…",
+      "why": "智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。",
+      "forYou": "让 AI 生成一段 C 代码，你负责逐行检查边界条件、内存释放和返回值。会 review，比会调用更难，也更值钱。",
+      "url": "https://www.ithome.com/1/025/833.htm"
+    },
+    {
+      "id": "d-20261112-n7mxhh",
+      "date": "2026-11-12",
+      "time": "11:36",
       "category": "agent",
       "source": "量子位",
-      "readTime": 5,
-      "title": "谷歌正式开放 Gemini 4 Carbon 模型",
-      "summary": "谷歌模型正式API上线，面向Ultra订阅用户开放。Gemini 4 Carbon在CursorBench 4.0、WANDR、AutomationBench三项基准排名第一，任务成本比第二名的低50%以上。Gemini 4 Carbon能自动重建登月舱3D模型，与的/swarm功能配合可调度多Ag…",
-      "why": "智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。 留意它真正解决的是哪一类任务，而不是榜单上的数字。",
-      "forYou": "让 AI 生成一段 C 代码，你负责逐行检查边界条件、内存释放和返回值。会 review，比会调用更难，也更值钱。",
-      "url": "https://mp.weixin.qq.com/s/9b1_lBtr62ZaQUurGKl5DA"
-    },
-    {
-      "id": "d-20261111-ndtasj",
-      "date": "2026-11-11",
-      "time": "08:00",
-      "category": "agent",
-      "source": "MiniMax 稀宇科技",
-      "readTime": 4,
-      "title": "MiniMax 开源图像生成模型 MiniMax H3-Image",
-      "summary": "正式开源图像生成模型 ，支持文生图、图像参考和编辑功能，可在10秒内生成4096×4096（约1600万像素）的高分辨率图像，速度约为市面主流水平的5倍，具备开源模型中最强的指令遵循能力，最多支持16张参考图。",
+      "readTime": 2,
+      "title": "多模态“源神”！MiniMax开源SOTA生图模型，原生4K，一张两毛",
+      "summary": "「CAD拆解」",
       "why": "智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。 这条涉及开源实现，直接读仓库比看二手解读更快。",
       "forYou": "让 AI 生成一段 C 代码，你负责逐行检查边界条件、内存释放和返回值。会 review，比会调用更难，也更值钱。",
-      "url": "https://mp.weixin.qq.com/s/k155NbBb4srZoJBZvlWttA"
+      "url": "https://www.qbitai.com/2026/11/509440.html"
     },
     {
-      "id": "d-20261111-lfa4b6",
-      "date": "2026-11-11",
-      "time": "06:18",
+      "id": "d-20261112-557a9q",
+      "date": "2026-11-12",
+      "time": "10:45",
       "category": "agent",
       "source": "量子位",
-      "readTime": 3,
-      "title": "卷起来了！11月11日，大模型厂商在天猫打5折",
-      "summary": "大模型厂商智谱、MiniMax、千问办公、阿里云、Qoder都在天猫打5折。",
+      "readTime": 2,
+      "title": "从通用大模型到学习过程智能，AI如何真正进入课堂？",
+      "summary": "银河智学首席科学家邓澍军博士发表主题演讲",
       "why": "智能体正从「会聊天」走向「会交付」：能拆解任务、调用工具、产出结果。能力边界在往上移，人的价值也随之往需求定义与结果验收迁移。 留意它真正解决的是哪一类任务，而不是榜单上的数字。",
       "forYou": "让 AI 生成一段 C 代码，你负责逐行检查边界条件、内存释放和返回值。会 review，比会调用更难，也更值钱。",
-      "url": "https://www.qbitai.com/2026/11/509085.html"
+      "url": "https://www.qbitai.com/2026/11/509404.html"
+    },
+    {
+      "id": "d-20261112-x0mq62",
+      "date": "2026-11-12",
+      "time": "08:00",
+      "category": "industry",
+      "source": "哩布哩布AI",
+      "readTime": 4,
+      "title": "LibTV 全球联合首发 Seedance 2.5 Flash",
+      "summary": "在 全球联合首发，面向所有用户开放。Seedance 2.5 Flash 主打更快生成、更低成本，支持4至30秒视频生成与480p、720p输出，涵盖文生视频、首尾帧生成、多素材组合参考及有声视频、视频编辑与延长，价格与 标准版持平，双十一期间720P低至0.10元每秒。",
+      "why": "产业链上的投入与调整，最终会传导到岗位需求和开发工具。先看谁在投入、谁在收缩，再决定学什么。",
+      "forYou": "记录一个你关心的指标（算力、岗位数、开源活跃度），下周再对比一次，练习用数据判断趋势。",
+      "url": "https://mp.weixin.qq.com/s/4rW11WfIzx_w6zMk0fl2rQ"
     },
     {
       "id": "d-20261112-s9dt1w",
@@ -92,6 +105,19 @@ window.MORNINGCODE_NEWS_SCHEDULED = {
       "why": "工具和方法会持续迭代，但底层原理变化很慢。把新工具当成练手的场景，而不是要背下来的结论。",
       "forYou": "挑这条里提到的一个做法，今天用 20 分钟写个最小 demo 验证一遍，记进学习总结。",
       "url": "https://www.infoq.cn/article/kIw9Wp2uSgCwrsgicIZ0?utm_source=rss&utm_medium=article"
+    },
+    {
+      "id": "d-20261111-rxkfj9",
+      "date": "2026-11-11",
+      "time": "12:43",
+      "category": "learning",
+      "source": "量子位",
+      "readTime": 2,
+      "title": "纯代码造《后室》，116秒切20种画风！文心新模型玩嗨了",
+      "summary": "模型即将开源",
+      "why": "工具和方法会持续迭代，但底层原理变化很慢。把新工具当成练手的场景，而不是要背下来的结论。 留意它真正解决的是哪一类任务，而不是榜单上的数字。",
+      "forYou": "挑这条里提到的一个做法，今天用 20 分钟写个最小 demo 验证一遍，记进学习总结。",
+      "url": "https://www.qbitai.com/2026/11/509224.html"
     },
     {
       "id": "d-20261111-gk6zpg",
@@ -120,43 +146,17 @@ window.MORNINGCODE_NEWS_SCHEDULED = {
       "url": "https://www.infoq.cn/article/x0B056QFxzYEewT1Et34?utm_source=rss&utm_medium=article"
     },
     {
-      "id": "d-20261112-7b9shb",
+      "id": "d-20261112-jmxgcz",
       "date": "2026-11-12",
-      "time": "17:17",
+      "time": "23:34",
       "category": "industry",
       "source": "IT之家",
       "readTime": 5,
-      "title": "鸿海董事长刘扬伟：2027 年芯片、内存及部分关键零部件供需吃紧将持续",
-      "summary": "IT之家 11 月 12 日消息，据台媒经济日报，鸿海董事长刘扬伟今日下午表示，2027 年 AI 整体需求预期仍将大于供给，供需吃紧将持续。他预计未来 3 到 5 年，鸿海在 AI 相关云端产品业绩占比，将提高至超过 6 成。刘扬伟表示，目前芯片、内存及部分关键零部件供应吃紧，是整体产业共同面临的…",
-      "why": "产业链上的投入与调整，最终会传导到岗位需求和开发工具。先看谁在投入、谁在收缩，再决定学什么。 底层资源的变化，最终会体现在你用的开发工具与部署方式上。",
-      "forYou": "记录一个你关心的指标（算力、岗位数、开源活跃度），下周再对比一次，练习用数据判断趋势。",
-      "url": "https://www.ithome.com/1/026/277.htm"
-    },
-    {
-      "id": "d-20261112-bmx701",
-      "date": "2026-11-12",
-      "time": "16:43",
-      "category": "industry",
-      "source": "IT之家",
-      "readTime": 5,
-      "title": "10 月全球新能源汽车销量 209 万辆重回增长，中国出口创单月纪录",
-      "summary": "IT之家 11 月 12 日消息，据路透社 12 日报道，英国研究机构 Benchmark Mineral Intelligence 周四公布的数据显示，10 月全球纯电和插混车型销量重回增长，主要受到美国去年同期基数极低，以及欧洲市场持续增长的影响。Benchmark 数据经理查尔斯 · 莱斯特接…",
+      "title": "黄仁勋辞任英伟达 CEO 重创全球 AI 概念股，AMD、博通逆势上涨",
+      "summary": "IT之家 11 月 12 日消息，据路透社报道，黄仁勋因婚外情丑闻持续发酵而辞去英伟达 CEO，引发全球 AI 概念股周四大跌。英伟达领导层突遭变动，也让原本就面临融资和监管压力的 AI 行业增添了新的风险。英伟达宣布，CFO 科莱特 · 克雷斯将暂任 CEO，公司同时寻找正式接班人。作为 AI 产…",
       "why": "产业链上的投入与调整，最终会传导到岗位需求和开发工具。先看谁在投入、谁在收缩，再决定学什么。",
       "forYou": "记录一个你关心的指标（算力、岗位数、开源活跃度），下周再对比一次，练习用数据判断趋势。",
-      "url": "https://www.ithome.com/1/026/177.htm"
-    },
-    {
-      "id": "d-20261112-9si788",
-      "date": "2026-11-12",
-      "time": "16:31",
-      "category": "career",
-      "source": "IT之家",
-      "readTime": 5,
-      "title": "澳洲航空宣布裁员 850 人，工会质疑其借 AI 之名削减本土岗位",
-      "summary": "IT之家 11 月 12 日消息，据路透社今天（12 日）报道，澳大利亚国家航空公司澳洲航空宣布，将与咨询公司埃森哲合作推进 AI 转型，裁减 850 个岗位，并把部分企业职能外包至海外。此举引发工会质疑，认为澳航是在借 AI 之名掩饰裁员的真正原因。IT之家注：所谓“AI 洗白”，就是企业声称裁员…",
-      "why": "招聘与岗位口径的变化，往往比技术新闻更早反映市场真实需要。看清楚被奖励的是哪种能力，比追热点更有用。 把它和课程里正在学的能力对照一下，找出还缺的那一块。",
-      "forYou": "把一个课程作业写成「输入—输出—验收标准」三行说明，这就是简历上能讲清楚的项目。",
-      "url": "https://www.ithome.com/1/026/157.htm"
+      "url": "https://www.ithome.com/1/026/437.htm"
     }
   ]
 };
