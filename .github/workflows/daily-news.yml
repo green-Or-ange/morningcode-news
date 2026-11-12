@@ -1,0 +1,83 @@
+name: 每日凌晨生成行业简报
+
+# GitHub Actions 的 cron 用 UTC。16:30 UTC = 次日 00:30 北京时间。
+# 第二条 18:00 UTC（02:00 北京时间）是兜底：GitHub 高峰期定时任务可能排队，
+# 万一 00:30 那次被跳过，02:00 补跑；脚本检测到当日已生成会自动跳过，不会重复提交。
+on:
+  schedule:
+    - cron: "30 16 * * *"
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "强制重新生成（忽略当日已有数据）"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate-news.mjs"
+      - ".github/workflows/daily-news.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-news
+  cancel-in-progress: true
+
+env:
+  NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+  NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+  NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 抓取并生成今日简报
+        env:
+          FORCE_NEWS: ${{ github.event_name == 'workflow_dispatch' && inputs.force == 'true' && '1' || '0' }}
+        run: node scripts/generate-news.mjs
+
+      - name: 提交当日数据
+        run: |
+          git config user.name "morningcode-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- assets/news-data.json assets/news-data.js; then
+            echo "数据与上一版相同，跳过提交。"
+          else
+            git add assets/news-data.json assets/news-data.js
+            git commit -m "chore(news): 每日简报 $(date -u -d '+8 hours' +%F)"
+            git push
+          fi
+
+      # 可选：站点已绑定 Git 仓库时，用一个 Build Hook 立即触发 Netlify 构建。
+      # 在 Netlify → Site configuration → Build & deploy → Build hooks 创建，
+      # 把 URL 存成仓库 Secret：NETLIFY_BUILD_HOOK。
+      - name: 触发 Netlify 构建（已配置 Build Hook 时）
+        if: env.NETLIFY_BUILD_HOOK != ''
+        run: curl -fsS -X POST -d '{}' "$NETLIFY_BUILD_HOOK"
+
+      # 可选：站点没绑定 Git 仓库时，用令牌直接把最新数据部署上去。
+      # Secret：NETLIFY_AUTH_TOKEN（Personal access token）、NETLIFY_SITE_ID（Site ID）。
+      - name: 直接部署到 Netlify（配置了令牌时）
+        if: env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != ''
+        run: |
+          npx --yes netlify-cli@17 deploy \
+            --dir=. \
+            --prod \
+            --message="每日简报 $(date -u -d '+8 hours' +%F)"

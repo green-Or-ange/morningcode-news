@@ -1,0 +1,4 @@
+# Netlify SPA fallback
+# 任意路径（含 /news、/report 等子路径）都重写到 index.html，由前端 hash 路由接管。
+# 已存在的真实文件仍由 Netlify 直接返回，不会被这条规则覆盖。
+/*    /index.html   200

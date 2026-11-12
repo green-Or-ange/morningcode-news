@@ -1,0 +1,10 @@
+# 本地预览与浏览器调试产物
+node_modules/
+edge-profile*/
+edge-verify-*/
+*.log
+.DS_Store
+Thumbs.db
+
+# 语法检查临时文件
+assets/.check-*.js
